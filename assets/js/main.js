@@ -50,14 +50,17 @@
       });	
    
       // Tab
+      
       $('#v-pills-tab a').on('click',function (e) {
         e.preventDefault()
+        /*
         $("#acte-area").attr('class', '');  
         $("#ates-area").attr('class', '');  
+        */
         $("#v-pills-tab a").removeClass('active');  
         $("#v-pills-tab a").removeClass('show');  
       })  
-
+/*
       // acte
       $('#acte-area .acte-form-bloc .btn').on('click',function (e) {
         e.preventDefault()
@@ -77,7 +80,7 @@
         e.preventDefault()
         $("#ates-area").attr('class', 'ates-track-view');  
       })
-      
+      */
        // Slick Nav 
       $('.wpb-mobile-menu').slicknav({
         prependTo: '.navbar-header',
@@ -109,16 +112,42 @@
       });
 
       // stepper tabs
-      $('#myTab1.nav-tabs+.tab-content .btn-primary').click(function(){
-        $('#myTab1.nav-tabs li a.active').parent('li').next('li').find('a').trigger('click');  
+      $('#step1.tab-pane .row .card:last-child .btn').click(function(){  
+        $('#step1.tab-pane').addClass('tracking');    
       });
-      
-        $('#myTab1.nav-tabs+.tab-content .btn-default').click(function(){
-          $('#myTab1.nav-tabs li a.active').parent('li').prev('li').find('a').trigger('click');   
-      });
-      
-      // $('select.search').editableSelect({ effects: 'slide' });  
 
+      $('.nav-pills a:first-child').click(function(){  
+        $('#step1.tab-pane').removeClass('tracking');    
+      });
+
+      $('.timeline+.btn').click(function(){  
+        $('#step1.tab-pane').removeClass('tracking');    
+      });
+      //** */
+      $('.nav-pills+.tab-content .btn-primary').click(function(){ 
+        if ($(window).width() < 922) {
+          $(this).parents('.tab-pane').next('.nav').find('a').trigger('click');  
+         }
+         else {
+          $('.nav-pills a.active').next('a').trigger('click');  
+         }  ;  
+      });
+      
+      $('.nav-pills+.tab-content .btn-default').click(function(){ 
+        if ($(window).width() < 922) {
+          $(this).parents('.tab-pane').prev('.nav').prev('.tab-pane').prev('.nav').find('a').trigger('click'); 
+         }
+         else {
+          $('.nav-pills a.active').prev('a').trigger('click');  
+         }  ;  
+      });  
+      
+      $('#step1.tab-pane .row .card:first-child .btn').click(function(){ 
+        $('.nav-pills a:nth-child(2)').trigger('click');    
+      });
+      
+       
+      // select width search
       $('select.select').selectpicker({ 
         liveSearch: false 
       });
